@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.sipios.refactoring.model.Body;
+import com.sipios.refactoring.model.Customer;
 import com.sipios.refactoring.model.Item;
 
 @RestController
@@ -22,7 +22,7 @@ public class ShoppingController {
     private Logger logger = LoggerFactory.getLogger(ShoppingController.class);
 
     @PostMapping
-    public String getPrice(@RequestBody Body b) {
+    public String getPrice(@RequestBody Customer customer) {
         double p = 0;
         double d;
 
@@ -31,11 +31,11 @@ public class ShoppingController {
         cal.setTime(date);
 
         // Compute discount for customer
-        if (b.getType().equals("STANDARD_CUSTOMER")) {
+        if (customer.getType().equals("STANDARD_CUSTOMER")) {
             d = 1;
-        } else if (b.getType().equals("PREMIUM_CUSTOMER")) {
+        } else if (customer.getType().equals("PREMIUM_CUSTOMER")) {
             d = 0.9;
-        } else if (b.getType().equals("PLATINUM_CUSTOMER")) {
+        } else if (customer.getType().equals("PLATINUM_CUSTOMER")) {
             d = 0.5;
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -55,12 +55,12 @@ public class ShoppingController {
                 cal.get(Calendar.MONTH) == 0
             )
         ) {
-            if (b.getItems() == null) {
+            if (customer.getItems() == null) {
                 return "0";
             }
 
-            for (int i = 0; i < b.getItems().length; i++) {
-                Item it = b.getItems()[i];
+            for (int i = 0; i < customer.getItems().length; i++) {
+                Item it = customer.getItems()[i];
 
                 if (it.getType().equals("TSHIRT")) {
                     p += 30 * it.getNb() * d;
@@ -74,12 +74,12 @@ public class ShoppingController {
                 // }
             }
         } else {
-            if (b.getItems() == null) {
+            if (customer.getItems() == null) {
                 return "0";
             }
 
-            for (int i = 0; i < b.getItems().length; i++) {
-                Item it = b.getItems()[i];
+            for (int i = 0; i < customer.getItems().length; i++) {
+                Item it = customer.getItems()[i];
 
                 if (it.getType().equals("TSHIRT")) {
                     p += 30 * it.getNb() * d;
@@ -95,15 +95,15 @@ public class ShoppingController {
         }
 
         try {
-            if (b.getType().equals("STANDARD_CUSTOMER")) {
+            if (customer.getType().equals("STANDARD_CUSTOMER")) {
                 if (p > 200) {
                     throw new Exception("Price (" + p + ") is too high for standard customer");
                 }
-            } else if (b.getType().equals("PREMIUM_CUSTOMER")) {
+            } else if (customer.getType().equals("PREMIUM_CUSTOMER")) {
                 if (p > 800) {
                     throw new Exception("Price (" + p + ") is too high for premium customer");
                 }
-            } else if (b.getType().equals("PLATINUM_CUSTOMER")) {
+            } else if (customer.getType().equals("PLATINUM_CUSTOMER")) {
                 if (p > 2000) {
                     throw new Exception("Price (" + p + ") is too high for platinum customer");
                 }
