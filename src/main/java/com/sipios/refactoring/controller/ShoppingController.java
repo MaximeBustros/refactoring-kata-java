@@ -56,12 +56,12 @@ public class ShoppingController {
                 cal.get(Calendar.MONTH) == 0
             )
         ) {
-            if (customer.getItems() == null) {
+            if (customer.getCartItems().isEmpty()) {
                 return "0";
             }
 
-            for (int i = 0; i < customer.getItems().length; i++) {
-                Item it = customer.getItems()[i];
+            for (int i = 0; i < customer.getCartItems().size(); i++) {
+                Item it = customer.getCartItems().get(i);
 
                 if (it.getName().equals("TSHIRT")) {
                     p += 30 * it.getNb() * d;
@@ -75,12 +75,12 @@ public class ShoppingController {
                 // }
             }
         } else {
-            if (customer.getItems() == null) {
+            if (customer.getCartItems().isEmpty()) {
                 return "0";
             }
 
-            for (int i = 0; i < customer.getItems().length; i++) {
-                Item it = customer.getItems()[i];
+            for (int i = 0; i < customer.getCartItems().size(); i++) {
+                Item it = customer.getCartItems().get(i);
 
                 if (it.getName().equals("TSHIRT")) {
                     p += 30 * it.getNb() * d;
@@ -104,7 +104,7 @@ public class ShoppingController {
                 if (p > 800) {
                     throw new Exception("Price (" + p + ") is too high for premium customer");
                 }
-            } else if (customer.getCustomerType() == CustomerType.PLATINUM_CUSTOMER)) {
+            } else if (customer.getCustomerType() == CustomerType.PLATINUM_CUSTOMER) {
                 if (p > 2000) {
                     throw new Exception("Price (" + p + ") is too high for platinum customer");
                 }
