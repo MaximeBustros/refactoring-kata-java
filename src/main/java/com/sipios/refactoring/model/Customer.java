@@ -1,16 +1,20 @@
 package com.sipios.refactoring.model;
 
+import com.sipios.refactoring.enums.CustomerType;
+
 public class Customer {
 
     private Item[] items;
-    private String customerType;
+    private CustomerType customerType;
 
-    public Customer(Item[] is, String customerType) {
+    public Customer(Item[] is, CustomerType customerType) {
         this.items = is;
         this.customerType = customerType;
     }
 
-    public Customer() {}
+    public Customer() {
+        this.customerType = CustomerType.STANDARD_CUSTOMER;
+    }
 
     public Item[] getItems() {
         return items;
@@ -20,11 +24,11 @@ public class Customer {
         this.items = items;
     }
 
-    public String getCustomerType() {
+    public CustomerType getCustomerType() {
         return customerType;
     }
 
-    public void setCustomerType(String customerType) {
+    public void setCustomerType(CustomerType customerType) {
         this.customerType = customerType;
     }
 }
