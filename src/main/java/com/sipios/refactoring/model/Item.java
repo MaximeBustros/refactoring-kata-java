@@ -2,22 +2,22 @@ package com.sipios.refactoring.model;
 
 public class Item {
 
-    private String type;
+    private String name;
     private int nb;
 
     public Item() {}
 
     public Item(String type, int quantity) {
-        this.type = type;
+        this.name = type;
         this.nb = quantity;
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setName(String type) {
+        this.name = type;
     }
 
     public int getNb() {

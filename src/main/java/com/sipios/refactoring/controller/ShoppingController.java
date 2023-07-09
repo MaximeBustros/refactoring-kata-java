@@ -63,11 +63,11 @@ public class ShoppingController {
             for (int i = 0; i < customer.getItems().length; i++) {
                 Item it = customer.getItems()[i];
 
-                if (it.getType().equals("TSHIRT")) {
+                if (it.getName().equals("TSHIRT")) {
                     p += 30 * it.getNb() * d;
-                } else if (it.getType().equals("DRESS")) {
+                } else if (it.getName().equals("DRESS")) {
                     p += 50 * it.getNb() * d;
-                } else if (it.getType().equals("JACKET")) {
+                } else if (it.getName().equals("JACKET")) {
                     p += 100 * it.getNb() * d;
                 }
                 // else if (it.getType().equals("SWEATSHIRT")) {
@@ -82,11 +82,11 @@ public class ShoppingController {
             for (int i = 0; i < customer.getItems().length; i++) {
                 Item it = customer.getItems()[i];
 
-                if (it.getType().equals("TSHIRT")) {
+                if (it.getName().equals("TSHIRT")) {
                     p += 30 * it.getNb() * d;
-                } else if (it.getType().equals("DRESS")) {
+                } else if (it.getName().equals("DRESS")) {
                     p += 50 * it.getNb() * 0.8 * d;
-                } else if (it.getType().equals("JACKET")) {
+                } else if (it.getName().equals("JACKET")) {
                     p += 100 * it.getNb() * 0.9 * d;
                 }
                 // else if (it.getType().equals("SWEATSHIRT")) {
