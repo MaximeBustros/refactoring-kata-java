@@ -3,11 +3,11 @@ package com.sipios.refactoring.model;
 public class Customer {
 
     private Item[] items;
-    private String type;
+    private String customerType;
 
-    public Customer(Item[] is, String t) {
+    public Customer(Item[] is, String customerType) {
         this.items = is;
-        this.type = t;
+        this.customerType = customerType;
     }
 
     public Customer() {}
@@ -20,11 +20,11 @@ public class Customer {
         this.items = items;
     }
 
-    public String getType() {
-        return type;
+    public String getCustomerType() {
+        return customerType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCustomerType(String customerType) {
+        this.customerType = customerType;
     }
 }

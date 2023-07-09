@@ -31,11 +31,11 @@ public class ShoppingController {
         cal.setTime(date);
 
         // Compute discount for customer
-        if (customer.getType().equals("STANDARD_CUSTOMER")) {
+        if (customer.getCustomerType().equals("STANDARD_CUSTOMER")) {
             d = 1;
-        } else if (customer.getType().equals("PREMIUM_CUSTOMER")) {
+        } else if (customer.getCustomerType().equals("PREMIUM_CUSTOMER")) {
             d = 0.9;
-        } else if (customer.getType().equals("PLATINUM_CUSTOMER")) {
+        } else if (customer.getCustomerType().equals("PLATINUM_CUSTOMER")) {
             d = 0.5;
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -95,15 +95,15 @@ public class ShoppingController {
         }
 
         try {
-            if (customer.getType().equals("STANDARD_CUSTOMER")) {
+            if (customer.getCustomerType().equals(CustomerType.STANDARD_CUSTOMER)) {
                 if (p > 200) {
                     throw new Exception("Price (" + p + ") is too high for standard customer");
                 }
-            } else if (customer.getType().equals("PREMIUM_CUSTOMER")) {
+            } else if (customer.getCustomerType().equals("PREMIUM_CUSTOMER")) {
                 if (p > 800) {
                     throw new Exception("Price (" + p + ") is too high for premium customer");
                 }
-            } else if (customer.getType().equals("PLATINUM_CUSTOMER")) {
+            } else if (customer.getCustomerType().equals("PLATINUM_CUSTOMER")) {
                 if (p > 2000) {
                     throw new Exception("Price (" + p + ") is too high for platinum customer");
                 }
